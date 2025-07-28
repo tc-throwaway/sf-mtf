@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Loans_should_have_single_Release_Charge</fullName>
+    <active>true</active>
+    <description>A Loan__c record can have only one Release Charge associated with it at any time. Prevent the creation of additional Release Charge records for the same loan.</description>
+    <errorConditionFormula>AND(
+    ISNEW(),
+    ISPICKVAL(Charge_Type__c, &quot;Release Charge&quot;),
+    Loan__r.Total_Release_Charges__c &gt; 0
+)</errorConditionFormula>
+    <errorMessage>A Release Charge already exists for this loan.</errorMessage>
+</ValidationRule>

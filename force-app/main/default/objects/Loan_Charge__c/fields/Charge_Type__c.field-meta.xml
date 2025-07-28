@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Charge_Type__c</fullName>
+    <label>Charge Type</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Release Charge</fullName>
+                <default>false</default>
+                <label>Release Charge</label>
+            </value>
+            <value>
+                <fullName>Interest Charge</fullName>
+                <default>false</default>
+                <label>Interest Charge</label>
+            </value>
+            <value>
+                <fullName>Legal Fee</fullName>
+                <default>false</default>
+                <label>Legal Fee</label>
+            </value>
+            <value>
+                <fullName>Admin Fee</fullName>
+                <default>false</default>
+                <label>Admin Fee</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
