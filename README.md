@@ -1,11 +1,11 @@
 # Summary
 
-* Most requirements have been implemented, including the bonus ones - the majority of the implementation is in `LoanService.cls` and `LoanChargeService.cls`
-* Unit tests with good coverage
-* Loan charges sum is handled via RUS - not Apex
-* Trigger recursion is handled via `TriggerControl.cls`. This is a trivial implementation of recursion control - in the "real world" a more comprehensive trigger framework is likely to be used
+* Most requirements have been implemented, including the bonus ones - the majority of the implementation is in [`LoanService.cls`](/force-app/main/default/classes/LoanService.cls) and [`LoanChargeService.cls`](/force-app/main/default/classes/LoanChargeService.cls)
+* Unit tests with good coverage - [`LoanServiceTest.cls`](/force-app/main/default/classes/LoanServiceTest.cls) and [`LoanChargeServiceTest.cls`](/force-app/main/default/classes/LoanChargeServiceTest.cls)
+* Loan charges sum is handled via RUS - not Apex.
+* Trigger recursion caused my Loan term changes is handled via [`TriggerControl.cls`](/force-app/main/default/classes/TriggerControl.cls). This is a trivial implementation of recursion control - in the "real world" a more comprehensive trigger framework is likely to be used.
 * Preventing multiple Release Charges is handled via a RUS + Validation Rule. Would consider doing in Apex if this was production code.
-* I implemented limited error handling, as my preferred aproach would be via Platform Events, but that seemed beyond the scope of this. In a real world implementation I would use an event based logging framework e.g. [sf-logger](https://github.com/tomcarman/sf-logger) or [NebulaLogger](https://github.com/jongpie/NebulaLogger)
+* I implemented limited error handling, as my preferred aproach would be via Platform Events, but that seemed beyond the scope of this. In a real world implementation I would use an event based logging framework e.g. [sf-logger](https://github.com/tomcarman/sf-logger) or [NebulaLogger](https://github.com/jongpie/NebulaLogger).
 * Should be deployable to a fresh dev org via the sf cli, although I don't have time to test! The only dependency should be to enable PersonAccounts with default RecordType name.
 
 # Issues
