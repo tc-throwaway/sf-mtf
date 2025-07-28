@@ -1,5 +1,3 @@
-# readme
-
 # Summary
 
 * Most requirements have been implemented, including the bonus ones - the majority of the implementation is in `LoanService.cls` and `LoanChargeService.cls`
