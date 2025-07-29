@@ -1,5 +1,15 @@
+/**
+ * @description Business logic to support Loan automations
+ * @author @tomcarman
+ * @since Q3 2025
+ * @group Loan Management
+ */
 public class LoanService {
 
+    /**
+     * @description Automation to create a Loan Charge of type Release Charge when a new Loan is created
+     * @param loans List of Loans, typically Trigger.new() fron LoanTriggerHandler
+     */
     public static void createReleaseCharges(List<Loan__c> loans) {
         
         List<Loan_Charge__c> releaseChargesToInsert = new List<Loan_Charge__c>();
@@ -23,6 +33,12 @@ public class LoanService {
         
     } 
 
+    /**
+     * @description Given some updated Loans, identify Laons which have had their
+     *              Term changed and generate a `LoanService.TermChange`
+     * @param oldLoanMap Map of Loans from Trigger.oldMap()
+     * @param newLoanMap Map of Loans from Trigger.newMap()
+     */
     public static void processLoanTermChanges(Map<Id, Loan__c> oldLoanMap, Map<Id, Loan__c> newLoanMap) {
 
         List<TermChange> termChanges = new List<TermChange>();
@@ -46,6 +62,11 @@ public class LoanService {
         updateLoanTerms(termChanges);
     }
 
+    /**
+     * description Update loan terms based on a list of TermChanges. Update the related Release Charge with a new date,
+     *             and insert a new Admin Charge. IMPORTANT: Disables Loan Charge trigger whilst processing to prevent recursion.
+     * @param termChanges List of LoanService.TermChange
+     */
     private static void updateLoanTerms(List<TermChange> termChanges) {
         
         // Bypass the Loan Charge Trigger to preent recursion
@@ -99,7 +120,9 @@ public class LoanService {
     }
 
 
-    // Represents an "item of work" for when a loan has a change in term length
+    /**
+     * @description Represents an "item of work" for when a loan has a change in term length
+     */
     private class TermChange {
         Id loanId;
         Date dateLoanIssued;

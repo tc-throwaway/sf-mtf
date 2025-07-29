@@ -1,3 +1,9 @@
+/**
+ * @description Business logic to support Loan Charge automations
+ * @author @tomcarman
+ * @since Q3 2025
+ * @group Loan Management
+ */
 public with sharing class LoanChargeService {
 
     public static final String LOAN_CHARGE_TYPE_RELEASE = 'Release Charge';
@@ -7,11 +13,14 @@ public with sharing class LoanChargeService {
     public static final Integer LOAN_CHARGE_AMOUNT_RELEASE = 500;
     public static final Integer LOAN_CHARGE_AMOUNT_ADMIN = 300;
 
+    /**
+     * @description Logic to extend the date of a Release Charge when an new Loan Charge with a later date is added.
+     * @param loanCharges List of Loan Charges, typically from Trigger.new()
+     */
     public static void adjustReleaseChargeDates(List<Loan_Charge__c> loanCharges) {
 
         Set<Id> loanIds = getRelatedLoanIds(loanCharges);
         Map<Id, Loan_Charge__c> relatedReleaseCharges = getReleaseCharges(loanIds);
-
         List<Loan_Charge__c> releaseChargesToUpdate = new List<Loan_Charge__c>();
 
         for(Loan_Charge__c newCharge: loanCharges) {
@@ -37,6 +46,11 @@ public with sharing class LoanChargeService {
         update releaseChargesToUpdate;
     }
 
+    /**
+     * @description Given a set of Loan Charges, return a set of related Loan Ids
+     * @param loanCharges List of Loan Charges to retrieve the Loan Ids from
+     * @return  `Set<Id>` Set of Loan__c Ids
+     */    
     private static Set<Id> getRelatedLoanIds(List<Loan_Charge__c> loanCharges) {
         Set<Id> loanIds = new Set<Id>();
         for(Loan_Charge__c loanCharge : loanCharges) {
@@ -45,6 +59,11 @@ public with sharing class LoanChargeService {
         return loanIds;
     }
 
+    /**
+     * @description Given a set of Loan Ids, return the associated Release Charge
+     * @param loanIds Set of Loan Ids to get the Release Charges for
+     * @return  `Map<Id, Loan_Charge__c>` Map of Loan Id | Loan Charge record (of type Release Charge)
+     */
     public static Map<Id, Loan_Charge__c> getReleaseCharges(Set<Id> loanIds) {
 
         // Assumes single release charge per loan, based on constraint.

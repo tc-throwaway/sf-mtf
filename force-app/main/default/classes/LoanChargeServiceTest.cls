@@ -1,3 +1,10 @@
+/**
+ * @description Unit tests for LoanChargeService.cls
+ * @author @tomcarman
+ * @since Q3 2025
+ * @group Loan Management
+ */
+
 @isTest
 private class LoanChargeServiceTest {
     
