@@ -20,6 +20,8 @@ The intention seems to be to progress the Release Charge date by +1 month, but i
 
 I imagine in a real world scenario the "Interest Charge" is applied as a percentage of the loan - in which case the ordering could matter. But based on the object configuration earlier in the requirements, its just a flat fee like the other Loan Charges. Given that, the order in which the charges are applied has no impact - so I didn't implement any ordering.
 
+# Documentation
+* Documented via [ApexDox](https://github.com/no-stack-dub-sack/apexdox-vs-code) - see [`apex-documentation`](/apex-documentation)
 
 # Unit Tests
 
